@@ -1,0 +1,14 @@
+{
+  "AWS_ACCOUNT_ID": "AKIAIMXZUZE26K3O5DQQ",
+  "REGION": "us-east-1",
+  "BUCKET": "titan-auth-${file(../serverless.yml):stage}",
+  "MAX_AGE": "10",
+  "DDB_PLAYERS_TABLE": "TitanPlayers-${file(../serverless.yml):stage}",
+  "DDB_MATCHES_TABLE": "TitanMatches-${file(../serverless.yml):stage}",
+  "EMAIL_SOURCE": "steven.haddix@gmail.com",
+  "VERIFICATION_PAGE": "http://titan-auth.s3.amazonaws.com/verify",
+  "RESET_PAGE": "http://titan-auth.s3.amazonaws.com/reset",
+  "IDENTITY_POOL_NAME": "Titans",
+  "USER_POOL_ID": "us-east-1_2yevchWvf",
+  "APP_CLIENT_ID": "7bggm65t31n55c9c2kmtlvrfd6"
+}

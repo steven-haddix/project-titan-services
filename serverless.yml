@@ -1,0 +1,116 @@
+service: titan-api
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpackIncludeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  profile: serverless
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+
+functions:
+  match-create:
+    handler: match/create.handler
+    memorySize: 128
+    events:
+      - http:
+          path: api/match/create
+          method: post
+          cors: true
+  match-list:
+      handler: match/list.handler
+      memorySize: 128
+      events:
+        - http:
+            path: api/match/list
+            method: get
+            cors: true
+  player-list:
+    handler: player/list.handler
+    memorySize: 128
+    events:
+      - http:
+          path: api/player/list
+          method: get
+          cors: true
+  player-create:
+    handler: player/create.handler
+    memorySize: 128
+
+resources:
+  Resources:
+    matchesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: TitanMatches-${opt:stage}
+        AttributeDefinitions:
+          - AttributeName: partitionKey
+            AttributeType: N
+          - AttributeName: matchId
+            AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: N
+        KeySchema:
+          - AttributeName: matchId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        GlobalSecondaryIndexes:
+          - IndexName: partitionKeyIndex
+            KeySchema:
+              - AttributeName: partitionKey
+                KeyType: HASH
+              - AttributeName: createdAt
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+    playersTable:
+          Type: AWS::DynamoDB::Table
+          Properties:
+            TableName: TitanPlayers-${opt:stage}
+            AttributeDefinitions:
+              - AttributeName: partitionKey
+                AttributeType: N
+              - AttributeName: playerId
+                AttributeType: S
+              - AttributeName: playerRank
+                AttributeType: N
+            KeySchema:
+              - AttributeName: playerId
+                KeyType: HASH
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+            GlobalSecondaryIndexes:
+              - IndexName: partitionKeyIndex
+                KeySchema:
+                  - AttributeName: partitionKey
+                    KeyType: HASH
+                  - AttributeName: playerRank
+                    KeyType: RANGE
+                Projection:
+                  ProjectionType: ALL
+                ProvisionedThroughput:
+                  ReadCapacityUnits: 1
+                  WriteCapacityUnits: 1

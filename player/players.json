@@ -1,0 +1,67 @@
+{
+  "TitanPlayers": [
+    {
+      "PutRequest": {
+        "Item": {
+          "matchCount": {
+            "N": "0"
+          },
+          "playerRank": {
+            "N": "1000"
+          },
+          "playerId": {
+            "S": "b69d50a0-54d2-4dba-8d08-c962effa5c85"
+          },
+          "email": {
+            "S": "steven.haddix@wendys.com"
+          },
+          "createdAt": {
+            "N": "1502244275594"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "matchCount": {
+            "N": "0"
+          },
+          "playerRank": {
+            "N": "1000"
+          },
+          "playerId": {
+            "S": "3a9458d5-acd1-406d-b921-5bd37ccac239"
+          },
+          "email": {
+            "S": "justin.little@wendys.com"
+          },
+          "createdAt": {
+            "N": "1502244275594"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "matchCount": {
+            "N": "0"
+          },
+          "playerRank": {
+            "N": "1000"
+          },
+          "playerId": {
+            "S": "b382d038-643c-4828-b118-edefd03b2dfd"
+          },
+          "email": {
+            "S": "steven.haddix@gmail.com"
+          },
+          "createdAt": {
+            "N": "1502244275594"
+          }
+        }
+      }
+    }
+  ]
+}
