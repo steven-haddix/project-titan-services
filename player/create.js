@@ -1,4 +1,4 @@
-import config from '../config.json'
+import config from '../config'
 import * as dynamoDbLib from '../libs/dynamodb-lib';
 
 export async function handler(event, context, callback) {

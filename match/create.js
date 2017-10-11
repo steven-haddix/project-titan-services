@@ -1,5 +1,6 @@
 import uuid from 'node-uuid'
 import Elo from 'arpad';
+import config from '../config'
 import * as dynamoDbLib from '../libs/dynamodb-lib';
 import { success, failure } from '../libs/response-lib';
 
@@ -22,7 +23,7 @@ const getPlayerRanks = (winner, loser) => {
 
 export async function getPlayer(playerId) {
     const params = {
-        TableName: 'TitanPlayers',
+        TableName: config.DDB_PLAYERS_TABLE,
         // 'Key' defines the partition key and sort key of the time to be retrieved
         // - 'userId': federated identity ID of the authenticated user
         // - 'noteId': path parameter
@@ -44,7 +45,7 @@ export async function getPlayer(playerId) {
 
 export async function updatePlayerRank(player, rank) {
     const params = {
-        TableName: 'TitanPlayers',
+        TableName: config.DDB_PLAYERS_TABLE,
         // 'Key' defines the partition key and sort key of the time to be updated
         // - 'userId': User Pool sub of the authenticated user
         // - 'noteId': path parameter
@@ -74,7 +75,7 @@ export async function handler(event, context, callback) {
     const loserId = body.loserId;
 
     const params = {
-        TableName: 'TitanMatches',
+        TableName: config.DDB_MATCHES_TABLE,
         Item: {
             partitionKey: 1,
             winnerId: winnerId,

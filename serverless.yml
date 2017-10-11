@@ -12,6 +12,9 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: us-east-1
   profile: serverless
+  environment:
+      DDB_PLAYERS_TABLE: TitanPlayers-${opt:stage}
+      DDB_MATCHES_TABLE: TitanMatches-${opt:stage}
 
   iamRoleStatements:
     - Effect: Allow

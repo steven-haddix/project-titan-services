@@ -1,10 +1,10 @@
-import config from '../config.json'
+import config from '../config'
 import * as dynamoDbLib from '../libs/dynamodb-lib';
 import { success, failure } from '../libs/response-lib';
 
 async function getPlayer(playerId) {
     const params = {
-        TableName: 'TitanPlayers',
+        TableName: config.DDB_PLAYERS_TABLE,
         Key: {
             playerId: playerId,
         },
