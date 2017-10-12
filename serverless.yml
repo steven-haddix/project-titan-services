@@ -29,6 +29,15 @@ provider:
       Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
 functions:
+  gql:
+    handler: gql/handler.handler
+    memorySize: 128
+    events:
+      - http:
+          path: gql
+          method: post
+          cors: true
+          integration: LAMBDA
   match-create:
     handler: match/create.handler
     memorySize: 128

@@ -12,7 +12,8 @@ module.exports = {
         'match/create': './match/create.js',
         'match/list': './match/list.js',
         'player/create': './player/create.js',
-        'player/list': './player/list.js'
+        'player/list': './player/list.js',
+        'gql/handler': './gql/handler.js'
     },
     target: 'node',
     // Since 'aws-sdk' is not compatible with webpack,
