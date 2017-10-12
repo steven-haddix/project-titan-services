@@ -1,6 +1,26 @@
 # Titan Services
 Project for deploying Titan services to AWS.
 
+## Queries
+### REST
+```
+GET /api/player/list
+GET /api/matches/list
+```
+
+### GraphQL
+Sample player query
+```
+POST /gql
+{
+  players {
+    playerId,
+    playerRank,
+    email
+  }
+}
+```
+
 ## Commands
 ### Deploy Infrastructure
 ```bash
